@@ -145,7 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
-        //\Barryvdh\Cors\ServiceProvider::class
+        \Barryvdh\Cors\ServiceProvider::class
 
     ],
 
