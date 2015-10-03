@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,4 +13,42 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('status', function () {
+        return response()->json([
+            'status' => 'working'
+        ]);
+    });
+
+    Route::get('protected', [
+        'middleware' => ['jwt.auth'],
+        function () {
+            return response()->json([
+                'jwt' => 'rocks'
+            ]);
+        }
+    ]);
+    Route::post('upload', [
+//    'is' => config('defender.superuser_role'),
+//    'middleware' => ['jwt.auth'],
+        //'can' => ['laboratorio_amostra_leitura'],
+        function (Request $request) {
+            $file = $request->file('file');
+
+
+            $caminho = base_path();
+            $file->move($caminho, $file->getClientOriginalName());
+
+
+            return Response::json([
+                'success' => true,
+                'message' => 'OK'
+            ]);
+        }
+
+    ]);
+
+
 });
