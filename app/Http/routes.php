@@ -38,7 +38,7 @@ Route::group(['prefix' => 'v1'], function () {
             $file = $request->file('file');
 
 
-            $caminho = base_path();
+            $caminho = base_path().'/public';
             $file->move($caminho, $file->getClientOriginalName());
 
 
