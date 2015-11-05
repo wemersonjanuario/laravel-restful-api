@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +14,27 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::group(['prefix' => 'treinamento'], function () {
+    Route::post('funcionario', [
+        'uses' => 'FuncionarioController@store'
+    ]);
+
+    Route::put('funcionario/{id}', [
+        'uses' => 'FuncionarioController@update'
+    ]);
+
+    Route::get('funcionario', [
+        'uses' => 'FuncionarioController@index'
+    ]);
+
+    Route::get('funcionario/{id}', [
+        'uses' => 'FuncionarioController@find'
+    ]);
+
+    Route::delete('funcionario/{id}', [
+        'uses' => 'FuncionarioController@destroy'
+    ]);
 });
 
 Route::group(['prefix' => 'v1'], function () {
@@ -38,7 +60,7 @@ Route::group(['prefix' => 'v1'], function () {
             $file = $request->file('file');
 
 
-            $caminho = base_path().'/public';
+            $caminho = base_path() . '/public';
             $file->move($caminho, $file->getClientOriginalName());
 
 
