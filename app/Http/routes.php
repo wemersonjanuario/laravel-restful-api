@@ -15,6 +15,47 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('welcome');
 });
+Response::macro('xml', function($vars, $status = 200, array $header = array(), $rootElement = 'response', $xml = null)
+{
+
+    if (is_object($vars) && $vars instanceof Illuminate\Support\Contracts\ArrayableInterface) {
+        $vars = $vars->toArray();
+    }
+
+    if (is_null($xml)) {
+        $xml = new SimpleXMLElement('<' . $rootElement . '/>');
+    }
+    foreach ($vars as $key => $value) {
+        if (is_array($value)) {
+            if (is_numeric($key)) {
+                Response::xml($value, $status, $header, $rootElement, $xml->addChild(str_singular($xml->getName())));
+            } else {
+                Response::xml($value, $status, $header, $rootElement, $xml->addChild($key));
+            }
+        } else {
+            $xml->addChild($key, $value);
+        }
+    }
+    if (empty($header)) {
+        $header['Content-Type'] = 'application/xml';
+    }
+    return Response::make($xml->asXML(), $status, $header);
+});
+
+
+
+
+
+// How to use
+// routes.php
+Route::get('api.{ext}', function()
+{
+    $data = ['status' => 'OK'];
+    $ext = \File::extension(\Request::url());
+    return response()->$ext($data);
+})->where('ext', 'xml|json');
+
+
 Route::group(['prefix' => 'treinamento'], function () {
     Route::post('funcionario', [
         'uses' => 'FuncionarioController@store'
@@ -34,6 +75,49 @@ Route::group(['prefix' => 'treinamento'], function () {
 
     Route::delete('funcionario/{id}', [
         'uses' => 'FuncionarioController@destroy'
+    ]);
+
+    Route::post('post', [
+        'uses' => 'PostController@store'
+    ]);
+
+    Route::put('post/{id}', [
+        'uses' => 'PostController@update'
+    ]);
+
+    Route::get('post', [
+        'uses' => 'PostController@index'
+    ]);
+
+    Route::get('post/{id}', [
+        'uses' => 'PostController@find'
+    ]);
+
+    Route::delete('post/{id}', [
+        'uses' => 'PostController@destroy'
+    ]);
+    Route::post('comment', [
+        'uses' => 'CommentController@store'
+    ]);
+
+    Route::put('comment/{id}', [
+        'uses' => 'CommentController@update'
+    ]);
+
+    Route::get('comment', [
+        'uses' => 'CommentController@index'
+    ]);
+
+    Route::get('comment/{id}', [
+        'uses' => 'CommentController@find'
+    ]);
+
+    Route::delete('comment/{id}', [
+        'uses' => 'CommentController@destroy'
+    ]);
+
+    Route::get('post-with-comment', [
+        'uses' => 'PostController@getPostWithComment'
     ]);
 });
 
