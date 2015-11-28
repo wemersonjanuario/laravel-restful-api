@@ -12,6 +12,13 @@ class FuncionarioController extends BaseController {
   }
 
 
+  protected function teste()
+  {
+
+    return parent::index();
+  }
+
+
 
 
 }

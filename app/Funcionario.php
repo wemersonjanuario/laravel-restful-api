@@ -7,7 +7,7 @@ class Funcionario extends Model
 
     protected $table = 'funcionario';
     protected $primaryKey = 'funcionario_id';
-    protected $guarded = array();
+    protected $guarded = array('id', 'funcionario_id');
     public static $rules = array();
 
     const CREATED_AT = 'funcionario_created_at';

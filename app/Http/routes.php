@@ -57,6 +57,48 @@ Route::get('api.{ext}', function()
 
 
 Route::group(['prefix' => 'treinamento'], function () {
+    Route::post('customer', [
+        'uses' => 'CustomerController@store'
+    ]);
+
+    Route::put('customer/{id}', [
+        'uses' => 'CustomerController@update'
+    ]);
+
+    Route::get('customer', [
+        'uses' => 'CustomerController@index'
+    ]);
+
+    Route::get('customer/{id}', [
+        'uses' => 'CustomerController@find'
+    ]);
+
+    Route::delete('customer/{id}', [
+        'uses' => 'CustomerController@destroy'
+    ]);
+
+    Route::post('order', [
+        'uses' => 'OrderController@store'
+    ]);
+
+    Route::put('order/{id}', [
+        'uses' => 'OrderController@update'
+    ]);
+
+    Route::get('order', [
+        'uses' => 'OrderController@index'
+    ]);
+
+    Route::get('order/{id}', [
+        'uses' => 'OrderController@find'
+    ]);
+
+    Route::delete('order/{id}', [
+        'uses' => 'OrderController@destroy'
+    ]);
+
+
+
     Route::post('funcionario', [
         'uses' => 'FuncionarioController@store'
     ]);
@@ -67,6 +109,9 @@ Route::group(['prefix' => 'treinamento'], function () {
 
     Route::get('funcionario', [
         'uses' => 'FuncionarioController@index'
+    ]);
+    Route::get('funcionario1', [
+        'uses' => 'FuncionarioController@teste'
     ]);
 
     Route::get('funcionario/{id}', [
@@ -118,6 +163,9 @@ Route::group(['prefix' => 'treinamento'], function () {
 
     Route::get('post-with-comment', [
         'uses' => 'PostController@getPostWithComment'
+    ]);
+    Route::get('post-with-comment2/{id}', [
+        'uses' => 'PostController@getPostWithComment2'
     ]);
 });
 

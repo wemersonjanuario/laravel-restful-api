@@ -23,7 +23,18 @@ class PostController extends BaseController
         $posts = Post::with('comments.user')->get();
         return response()->json([
             'success' => true,
-            'posts' =>  $posts
+            'data' =>  $posts
         ]);
     }
+    public function getPostWithComment2($id)
+    {
+
+        $posts = Post::where('post_id', $id)->with('comments.user')->first();
+        return response()->json([
+            'success' => true,
+            'data' =>  $posts
+        ]);
+    }
+
+
 }
