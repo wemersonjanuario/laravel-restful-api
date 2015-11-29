@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Comment extends Base
 {
     protected $table = 'comment';
     protected $primaryKey = 'comment_id';

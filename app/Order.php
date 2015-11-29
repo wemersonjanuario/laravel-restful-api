@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Order extends Base
 {
 
     protected $table = 'order';
