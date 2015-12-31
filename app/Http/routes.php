@@ -122,6 +122,28 @@ Route::group(['prefix' => 'treinamento'], function () {
         'uses' => 'FuncionarioController@destroy'
     ]);
 
+
+    Route::post('telefone', [
+        'uses' => 'TelefoneController@store'
+    ]);
+
+    Route::put('telefone/{id}', [
+        'uses' => 'TelefoneController@update'
+    ]);
+
+    Route::get('telefone', [
+        'uses' => 'TelefoneController@index'
+    ]);
+
+
+    Route::get('telefone/{id}', [
+        'uses' => 'TelefoneController@find'
+    ]);
+
+    Route::delete('telefone/{id}', [
+        'uses' => 'TelefoneController@destroy'
+    ]);
+
     Route::post('post', [
         'uses' => 'PostController@store'
     ]);

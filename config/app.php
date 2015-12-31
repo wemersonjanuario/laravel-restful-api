@@ -147,6 +147,7 @@ return [
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
         \Barryvdh\Cors\ServiceProvider::class,
         \Inline\Laravext\LaravextServiceProvider::class,
+        \Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider::class
 
     ],
 
@@ -199,6 +200,7 @@ return [
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        'PushNotification' => \Davibennun\LaravelPushNotification\Facades\PushNotification::class
 
     ],
 

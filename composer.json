@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "tymon/jwt-auth": "0.5.*",
         "barryvdh/laravel-cors": "0.7.*",
-        "wemersonjanuario/laravext": "dev-master"
+        "wemersonjanuario/laravext": "dev-master",
+        "davibennun/laravel-push-notification": "dev-laravel5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
